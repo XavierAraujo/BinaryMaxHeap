@@ -16,17 +16,19 @@ int size(binaryHeap* bHeap)
     return bHeap->size;
 }
 
-int push(binaryHeap* bHeap, heapNode node)
+int push(binaryHeap** bHeap, heapNode node)
 {
-    int heapSize = ++(bHeap->size);
-
-    bHeap->nodes = (heapNode*) realloc(bHeap->nodes, heapSize*sizeof(heapNode));
-    if(bHeap->nodes == NULL)
+    // Try to reallocate the required memory
+    int heapSize = (*bHeap)->size + 1;
+    heapNode* tmp = (heapNode*) realloc((*bHeap)->nodes, heapSize*sizeof(heapNode));
+    if(! tmp)
         return -1;
 
-    bHeap->nodes[heapSize-1] = node;
-
-    reorderAfterPush(bHeap);
+    // Update and reorder the heap in case of a successfull realocation
+    (*bHeap)->nodes = tmp;
+    (*bHeap)->size = heapSize;
+    (*bHeap)->nodes[heapSize-1] = node;
+    reorderAfterPush((*bHeap));
 
     return 0;
 }
@@ -139,16 +141,16 @@ static void swap(binaryHeap* bHeap, int index1, int index2)
     bHeap->nodes[index2] = auxNode;
 }
 
-heapNode pop(binaryHeap* bHeap)
+heapNode pop(binaryHeap** bHeap)
 {
     //if(bHeap == NULL || bHeap->size <= 0)
     //    return
 
-    heapNode node = bHeap->nodes[0];
-    swap(bHeap, 0, bHeap->size - 1);
-    int heapSize = --(bHeap->size);
-    bHeap->nodes = (heapNode*) realloc(bHeap->nodes, heapSize*sizeof(heapNode));
-    reorderAfterPop(bHeap);
+    heapNode node = (*bHeap)->nodes[0];
+    swap((*bHeap), 0, (*bHeap)->size - 1);
+    int heapSize = --((*bHeap)->size);
+    (*bHeap)->nodes = (heapNode*) realloc((*bHeap)->nodes, heapSize*sizeof(heapNode));
+    reorderAfterPop((*bHeap));
     return node;
 }
 
@@ -173,10 +175,10 @@ void print(binaryHeap* bHeap)
         printf("[%i] -> key:%i, name:%s\n", i, bHeap->nodes[i].key, bHeap->nodes[i].name);
 }
 
-void destroy(binaryHeap* bHeap)
+void destroy(binaryHeap** bHeap)
 {
-    free(bHeap->nodes);
-    free(bHeap);
-    bHeap = NULL;
+    free((*bHeap)->nodes);
+    free((*bHeap));
+    (*bHeap) = NULL;
 }
 

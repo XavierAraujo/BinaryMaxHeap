@@ -30,7 +30,7 @@ binaryHeap* create();
  * @brief destroy Deallocates the memory allocated for the heap nodes and for the binary heap to prevent memory leaks. It also set the pointer to NULL.
  * @param bHeap Pointer to the binary heap to be destroyed.
  */
-void destroy(binaryHeap* bHeap);
+void destroy(binaryHeap** bHeap);
 
 /**
  * @brief push Pushes a heap node in a given binary heap, and reorganizes the heap if necessary to maintain the heap property.
@@ -38,14 +38,14 @@ void destroy(binaryHeap* bHeap);
  * @param node Heap node to be pushed into the binary heap
  * @return
  */
-int push(binaryHeap* bHeap, heapNode node);
+int push(binaryHeap** bHeap, heapNode node);
 
 /**
  * @brief pop Returns the top heap node, removes it from the binary heap and reorders the heap.
  * @param bHeap Pointer to the binary heap from which the node is meant to be popped.
  * @return Returns the top node from the binary heap.
  */
-heapNode pop(binaryHeap* bHeap);
+heapNode pop(binaryHeap** bHeap);
 
 /**
  * @brief peek This method allows to access the top heap node without altering the state of the binary heap.
