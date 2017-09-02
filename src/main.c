@@ -16,14 +16,11 @@ int main(int argc, char** argv[])
     push(&myHeap, node);
     node.key = 4; strcpy(node.name, "Node E");
     push(&myHeap, node);
-
     printHeap(myHeap);
 
     node.key = 15; strcpy(node.name, "Node F");
     push(&myHeap, node);
     printHeap(myHeap);
-
-
 
     poppedNode = pop(&myHeap);
     printPoppedNode(&poppedNode);
