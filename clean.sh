@@ -1,1 +1,2 @@
-rm -r build/
+rm -rf build/
+rm -rf test/build
