@@ -47,7 +47,6 @@ int main(int argc, char** argv[])
     printHeap(myHeap);
 
     destroy(&myHeap);
-    myHeap = NULL;
     printHeap(myHeap);
 
     return 0;
