@@ -1,22 +1,28 @@
 #ifndef BINARY_HEAP_H
 #define BINARY_HEAP_H
 
-#include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
 
-
+/**
+ * @brief This struct represents a binary heap node which is composed by a heap key and by a name that identifies it.
+ *
+ */
 typedef struct heapNode
 {
-    int key;
-    char name[50];
+    int key; /**< Heap key of the node. */
+    char name[50]; /**< Name of the node. */
 
 } heapNode;
 
+/**
+ * @brief This struct represents a binary heap which is composed by a size value which represents the number of nodes on the heap and by a pointer to its nodes.
+ *
+ */
 typedef struct binaryHeap
 {
-    heapNode* nodes;
-    size_t size;
+    heapNode* nodes; /**< Pointer to the nodes of the heap. */
+    size_t size; /**< Size of the heap. */
 
 } binaryHeap;
 
@@ -60,12 +66,6 @@ heapNode* peek(binaryHeap* bHeap);
  * @return Returns the size of the binary or -1 if the pointer to the heap is NULL.
  */
 int size(binaryHeap* bHeap);
-
-/**
- * @brief print Prints the content of a given binary heap in a form of an array. If the pointer to the heap is NULL it prints the message 'Null Heap'
- * @param bHeap Pointer to the binary heap to be printed.
- */
-void print(binaryHeap* bHeap);
 
 /**
  * @brief reorderAfterPush Reorganizes the binary heap after a new element being pushed.

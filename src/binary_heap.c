@@ -39,20 +39,20 @@ static void reorderAfterPush(binaryHeap* bHeap)
     if(bHeap == NULL || bHeap->size <= 1)
         return;
 
+    int currIndex = bHeap->size - 1;
     while(true)
     {
-        // Get the array index of the last heap element and
-        // the index of its parent
-        int lastElem = bHeap->size - 1;
-        int parent = (lastElem-1)/2;
+        int parent = (currIndex-1)/2; // get the index of the parent of the current node
 
-        // If key of the last element is higher than the key
-        // of its parent we have to swap them. Otherwise the
-        // heap is organized.
-        if(bHeap->nodes[lastElem].key > bHeap->nodes[parent].key)
-            swap(bHeap, lastElem, parent);
-        else
+        // If key of the node in analyzis is lower than the key
+        // of its parent the heap is organized.
+        // Otherwise we have to swap them
+        if(bHeap->nodes[currIndex].key <= bHeap->nodes[parent].key
+            || currIndex == 0)
             break;
+
+        swap(bHeap, currIndex, parent);
+        currIndex = parent;
     }
 }
 
@@ -162,18 +162,6 @@ heapNode* peek(binaryHeap* bHeap)
     return &bHeap->nodes[0];
 }
 
-void print(binaryHeap* bHeap)
-{
-    if (bHeap == NULL)
-    {
-        printf("\nNull Heap\n");
-        return;
-    }
-
-    printf("\n\n## BinaryHeap Size: %zu\n", bHeap->size);
-    for(int i=0; i<bHeap->size;i++)
-        printf("[%i] -> key:%i, name:%s\n", i, bHeap->nodes[i].key, bHeap->nodes[i].name);
-}
 
 void destroy(binaryHeap** bHeap)
 {

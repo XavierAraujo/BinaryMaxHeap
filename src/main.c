@@ -1,45 +1,81 @@
-#include <stdio.h>
-#include <string.h>
-
-#include "binary_heap.h"
+#include "main.h"
 
 int main(int argc, char** argv[])
 {
-    heapNode node;
+    heapNode node, poppedNode;
+
     binaryHeap* myHeap = create();
-    print(myHeap);
 
-    node.key = 100;
-    strcpy(node.name, "nodeA");
+    node.key = 11; strcpy(node.name, "Node A");
     push(&myHeap, node);
-    print(myHeap);
-
-    node.key = 90;
-    strcpy(node.name, "nodeB");
+    node.key = 5; strcpy(node.name, "Node B");
     push(&myHeap, node);
-    print(myHeap);
-
-    node.key = 80;
-    strcpy(node.name, "nodeC");
+    node.key = 8; strcpy(node.name, "Node C");
     push(&myHeap, node);
-    print(myHeap);
-
-    node.key = 95;
-    strcpy(node.name, "nodeD");
+    node.key = 3; strcpy(node.name, "Node D");
     push(&myHeap, node);
-    print(myHeap);
+    node.key = 4; strcpy(node.name, "Node E");
+    push(&myHeap, node);
 
-    heapNode poppedNode = pop(&myHeap);
-    print(myHeap);
+    printHeap(myHeap);
 
-    printf("\n");
-    printf("poppedNode -> key:%i, name:%s\n", poppedNode.key, poppedNode.name);
+    node.key = 15; strcpy(node.name, "Node F");
+    push(&myHeap, node);
+    printHeap(myHeap);
+
+
+
+    poppedNode = pop(&myHeap);
+    printPoppedNode(&poppedNode);
+    printHeap(myHeap);
+
+    poppedNode = pop(&myHeap);
+    printPoppedNode(&poppedNode);
+    printHeap(myHeap);
+
+    poppedNode = pop(&myHeap);
+    printPoppedNode(&poppedNode);
+    printHeap(myHeap);
+
+    poppedNode = pop(&myHeap);
+    printPoppedNode(&poppedNode);
+    printHeap(myHeap);
+
+    poppedNode = pop(&myHeap);
+    printPoppedNode(&poppedNode);
+    printHeap(myHeap);
+
+    poppedNode = pop(&myHeap);
+    printPoppedNode(&poppedNode);
+    printHeap(myHeap);
 
     destroy(&myHeap);
     myHeap = NULL;
-    print(myHeap);
+    printHeap(myHeap);
 
     return 0;
 }
 
+void printPoppedNode(heapNode* node)
+{
+    if (node == NULL)
+    {
+        printf("\nNull Node\n");
+        return;
+    }
 
+    printf("\npoppedNode -> key:%i, name:%s\n", node->key, node->name);
+}
+
+void printHeap(binaryHeap* bHeap)
+{
+    if (bHeap == NULL)
+    {
+        printf("\nNull Heap\n");
+        return;
+    }
+
+    printf("\n\n## BinaryHeap Size: %zu\n", bHeap->size);
+    for(int i=0; i<bHeap->size;i++)
+        printf("[%i] -> key:%i, name:%s\n", i, bHeap->nodes[i].key, bHeap->nodes[i].name);
+}
