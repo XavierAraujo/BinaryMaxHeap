@@ -1,10 +1,12 @@
 #include <stdio.h>
 
-#include "heap.h"
+#include "binary_heap.h"
+
 
 int main(int argc, char** argv[])
 {
-    printf("HelloWorld\n");
-	return 0;
+    binaryHeap* myHeap = create_heap();
+
+
 }
 
