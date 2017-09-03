@@ -1,3 +1,7 @@
+# Project
+
+This project implements a max binary heap in C. The implementation of the heap was done using a dynamic array. Each node of the heap has associated a heap key and a name.
+
 # Repository Structure
 
 * ### bin
