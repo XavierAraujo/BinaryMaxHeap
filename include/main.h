@@ -9,7 +9,7 @@
  *
  * @param bHeap Pointer to the binary heap to be printed.
  */
-void printHeap(binaryHeap* bHeap);
+void printHeap(BinaryHeap* bHeap);
 
 /**
  * @brief Prints the content of a popped node. If the pointer to the heap is
@@ -17,4 +17,4 @@ void printHeap(binaryHeap* bHeap);
  *
  * @param node Pointer to the node to be printed
  */
-void printPoppedNode(heapNode* node);
+void printPoppedNode(HeapNode* node);

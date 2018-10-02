@@ -1,3 +1,7 @@
+
+#include <stdlib.h>
+#include <stdbool.h>
+
 #include "binary_heap.h"
 
 //
@@ -5,46 +9,46 @@
 //
 
 // Reorganizes the binary heap after a new element being pushed. Returns 0 in case of success and -1 otherwise.
-static int binary_heap_reorder_after_push(binaryHeap* bHeap);
+static int binary_heap_reorder_after_push(BinaryHeap* bHeap);
 
 // Reorganizes the binary heap after a element being popped. Returns 0 in case of success and -1 otherwise.
-static int binary_heap_reorder_after_pop(binaryHeap* bHeap);
+static int binary_heap_reorder_after_pop(BinaryHeap* bHeap);
 
 // Analyzes if a given node has child nodes. Returns true if the node has at least one child and false otherwise.
-static bool binary_heap_has_childs(binaryHeap* bHeap, int nodeIndex);
+static bool binary_heap_has_childs(BinaryHeap* bHeap, int nodeIndex);
 
 // Analyzes if the childs of a given node have a higher heap key.
 // Returns true if one of the childs of the indicated parent has a higher key than the parent, and false otherwise.
-static bool binary_heap_is_parent_key_lower_than_child(binaryHeap* bHeap, int parentIndex);
+static bool binary_heap_is_parent_key_lower_than_child(BinaryHeap* bHeap, int parentIndex);
 
 // Analyzes the childs of a parent node and it returns the index of the one with the hightest key.
 // Returns the index of the child containing the highest key value.
-static int binary_heap_get_highest_key_child_index(binaryHeap* bHeap, int parentIndex);
+static int binary_heap_get_highest_key_child_index(BinaryHeap* bHeap, int parentIndex);
 
 // Swaps two elements from the binary heap. Note that the index of the first element is 0.
 // Returns 0 in case of success and -1 otherwise.
-static int binary_heap_swap(binaryHeap* bHeap, int index1, int index2);
+static int binary_heap_swap(BinaryHeap* bHeap, int index1, int index2);
 
 //
 // Header functions implementation
 //
 
-binaryHeap* binary_heap_create()
+BinaryHeap* binary_heap_create()
 {
-    binaryHeap *heap = (binaryHeap*) malloc(sizeof(binaryHeap));
+    BinaryHeap *heap = (BinaryHeap*) malloc(sizeof(BinaryHeap));
     heap->nodes = NULL;
     heap->size = 0;
     return heap;
 }
 
-void binary_heap_destroy(binaryHeap** bHeap)
+void binary_heap_destroy(BinaryHeap** bHeap)
 {
     free((*bHeap)->nodes);
     free((*bHeap));
     (*bHeap) = NULL;
 }
 
-int binary_heap_push(binaryHeap** bHeap, heapNode node)
+int binary_heap_push(BinaryHeap** bHeap, HeapNode node)
 {
     // Protection against invalid heaps
     if((*bHeap) == NULL)
@@ -52,7 +56,7 @@ int binary_heap_push(binaryHeap** bHeap, heapNode node)
 
     // Reallocate the required memory
     int heapSize = (*bHeap)->size + 1;
-    heapNode* tmp = (heapNode*) realloc((*bHeap)->nodes, heapSize*sizeof(heapNode));
+    HeapNode* tmp = (HeapNode*) realloc((*bHeap)->nodes, heapSize*sizeof(HeapNode));
     if(! tmp)
         return -1;
 
@@ -65,9 +69,9 @@ int binary_heap_push(binaryHeap** bHeap, heapNode node)
     return 0;
 }
 
-heapNode binary_heap_pop(binaryHeap** bHeap)
+HeapNode binary_heap_pop(BinaryHeap** bHeap)
 {
-    heapNode node;
+    HeapNode node;
 
     // Protection against invalid heaps
     if((*bHeap) == NULL || (*bHeap)->size <= 0)
@@ -80,13 +84,13 @@ heapNode binary_heap_pop(binaryHeap** bHeap)
     // swap between the retrieved node and the last node must be done before memory reallocation
     binary_heap_swap((*bHeap), 0, (*bHeap)->size - 1);
     int heapSize = --((*bHeap)->size);
-    (*bHeap)->nodes = (heapNode*) realloc((*bHeap)->nodes, heapSize*sizeof(heapNode));
+    (*bHeap)->nodes = (HeapNode*) realloc((*bHeap)->nodes, heapSize*sizeof(HeapNode));
     // reorder is needed after the swap
     binary_heap_reorder_after_pop((*bHeap));
     return node;
 }
 
-heapNode* binary_heap_peek(binaryHeap* bHeap)
+HeapNode* binary_heap_peek(BinaryHeap* bHeap)
 {
     if(bHeap == NULL || bHeap->size == 0)
       return NULL ;
@@ -94,7 +98,7 @@ heapNode* binary_heap_peek(binaryHeap* bHeap)
     return &bHeap->nodes[0];
 }
 
-int binary_heap_get_size(binaryHeap* bHeap)
+int binary_heap_get_size(BinaryHeap* bHeap)
 {
     if (bHeap == NULL)
         return -1;
@@ -106,7 +110,7 @@ int binary_heap_get_size(binaryHeap* bHeap)
 // Static functions implementation
 //
 
-static int binary_heap_reorder_after_push(binaryHeap* bHeap)
+static int binary_heap_reorder_after_push(BinaryHeap* bHeap)
 {
     // If the size is 0 or 1 no reorder is required
     if(bHeap == NULL || bHeap->size <= 1)
@@ -135,7 +139,7 @@ static int binary_heap_reorder_after_push(binaryHeap* bHeap)
     return 0;
 }
 
-static int binary_heap_reorder_after_pop(binaryHeap* bHeap)
+static int binary_heap_reorder_after_pop(BinaryHeap* bHeap)
 {
     // If the size is 0 or 1 no reorder is required
     if(bHeap == NULL || bHeap->size <= 1)
@@ -163,7 +167,7 @@ static int binary_heap_reorder_after_pop(binaryHeap* bHeap)
     return 0;
 }
 
-static bool binary_heap_has_childs(binaryHeap* bHeap, int nodeIndex)
+static bool binary_heap_has_childs(BinaryHeap* bHeap, int nodeIndex)
 {
     if(bHeap == NULL || bHeap->size <= 1)
         return false;
@@ -180,7 +184,7 @@ static bool binary_heap_has_childs(binaryHeap* bHeap, int nodeIndex)
     return false;
 }
 
-static bool binary_heap_is_parent_key_lower_than_child(binaryHeap* bHeap, int parentIndex)
+static bool binary_heap_is_parent_key_lower_than_child(BinaryHeap* bHeap, int parentIndex)
 {
     if(bHeap == NULL)
         return false;
@@ -206,7 +210,7 @@ static bool binary_heap_is_parent_key_lower_than_child(binaryHeap* bHeap, int pa
     return false;
 }
 
-static int binary_heap_get_highest_key_child_index(binaryHeap* bHeap, int parentIndex)
+static int binary_heap_get_highest_key_child_index(BinaryHeap* bHeap, int parentIndex)
 {
     if(bHeap == NULL)
         return -1;
@@ -229,7 +233,7 @@ static int binary_heap_get_highest_key_child_index(binaryHeap* bHeap, int parent
     return ((keyChild1 > keyChild2) ? child1Index: child2Index);
 }
 
-static int binary_heap_swap(binaryHeap* bHeap, int index1, int index2)
+static int binary_heap_swap(BinaryHeap* bHeap, int index1, int index2)
 {
     if( bHeap == NULL || index1 < 0 || index2 < 0 ||
         index1 >= bHeap->size || index2 >= bHeap->size)
@@ -239,7 +243,7 @@ static int binary_heap_swap(binaryHeap* bHeap, int index1, int index2)
     if( index1 == index2)
         return 0;
 
-    heapNode auxNode;
+    HeapNode auxNode;
     auxNode = bHeap->nodes[index1];
     bHeap->nodes[index1] = bHeap->nodes[index2];
     bHeap->nodes[index2] = auxNode;

@@ -1,31 +1,28 @@
 #ifndef BINARY_HEAP_H
 #define BINARY_HEAP_H
 
-#include <stdlib.h>
-#include <stdbool.h>
-
 /**
  * @brief This struct represents a binary heap node which is composed by a heap key and
  *        by a name that identifies it.
  */
-typedef struct heapNode
+typedef struct HeapNode
 {
     int key; /**< Heap key of the node. */
     char name[50]; /**< Name of the node. */
 
-} heapNode;
+} HeapNode;
 
 /**
  * @brief This struct represents a binary heap which is composed by a size value, which
  *        represents the number of nodes on the heap, and by a pointer to its nodes.
  *        The size of the heap is automatically updated during push and pop operations.
  */
-typedef struct binaryHeap
+typedef struct BinaryHeap
 {
-    heapNode* nodes; /**< Pointer to the nodes of the heap. */
+    HeapNode* nodes; /**< Pointer to the nodes of the heap. */
     size_t size; /**< Size of the heap. */
 
-} binaryHeap;
+} BinaryHeap;
 
 /**
  * @brief Creates and initializes a binary heap. The size of the binary heap is
@@ -33,7 +30,7 @@ typedef struct binaryHeap
  *
  * @return Returns a pointer to the binary heap created.
  */
-binaryHeap* binary_heap_create();
+BinaryHeap* binary_heap_create();
 
 /**
  * @brief Deallocates the memory allocated for the heap nodes and for the binary
@@ -41,7 +38,7 @@ binaryHeap* binary_heap_create();
  *
  * @param bHeap Pointer to the pointer of the binary heap to be destroyed.
  */
-void binary_heap_destroy(binaryHeap** bHeap);
+void binary_heap_destroy(BinaryHeap** bHeap);
 
 /**
  * @brief Pushes a heap node in a given binary heap, and if necessary reorganizes the
@@ -51,7 +48,7 @@ void binary_heap_destroy(binaryHeap** bHeap);
  * @param node Heap node to be pushed into the binary heap.
  * @return Returns 0 in case of sucess and -1 otherwise.
  */
-int binary_heap_push(binaryHeap** bHeap, heapNode node);
+int binary_heap_push(BinaryHeap** bHeap, HeapNode node);
 
 /**
  * @brief Returns the top heap node, removes it from the binary heap and reorders the heap.
@@ -60,7 +57,7 @@ int binary_heap_push(binaryHeap** bHeap, heapNode node);
  * @param bHeap Pointer to the pointer of the binary heap from which the node is meant to be popped.
  * @return Returns the top node from the binary heap in case of success and a node with a heap key equal to -1 otherwise
  */
-heapNode binary_heap_pop(binaryHeap** bHeap);
+HeapNode binary_heap_pop(BinaryHeap** bHeap);
 
 /**
  * @brief This method allows to access the top heap node without altering the state of
@@ -69,7 +66,7 @@ heapNode binary_heap_pop(binaryHeap** bHeap);
  * @param bHeap Pointer to the binary heap to be analyzed.
  * @return Returns a pointer to the top node in case of success and a NULL pointer otherwise.
  */
-heapNode* binary_heap_peek(binaryHeap* bHeap);
+HeapNode* binary_heap_peek(BinaryHeap* bHeap);
 
 /**
  * @brief Returns the size of a given binary heap.
@@ -77,6 +74,6 @@ heapNode* binary_heap_peek(binaryHeap* bHeap);
  * @param bHeap Pointer to the binary heap to be analyzed.
  * @return Returns the size of the binary or -1 if the pointer to the heap is NULL.
  */
-int binary_heap_get_size(binaryHeap* bHeap);
+int binary_heap_get_size(BinaryHeap* bHeap);
 
 #endif
