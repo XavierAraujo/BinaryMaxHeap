@@ -8,25 +8,11 @@
 // Static functions declaration
 //
 
-// Reorganizes the binary heap after a new element being pushed. Returns 0 in case of success and -1 otherwise.
 static int binary_heap_reorder_after_push(BinaryHeap* bHeap);
-
-// Reorganizes the binary heap after a element being popped. Returns 0 in case of success and -1 otherwise.
 static int binary_heap_reorder_after_pop(BinaryHeap* bHeap);
-
-// Analyzes if a given node has child nodes. Returns true if the node has at least one child and false otherwise.
 static bool binary_heap_has_childs(BinaryHeap* bHeap, int nodeIndex);
-
-// Analyzes if the childs of a given node have a higher heap key.
-// Returns true if one of the childs of the indicated parent has a higher key than the parent, and false otherwise.
 static bool binary_heap_is_parent_key_lower_than_child(BinaryHeap* bHeap, int parentIndex);
-
-// Analyzes the childs of a parent node and it returns the index of the one with the hightest key.
-// Returns the index of the child containing the highest key value.
 static int binary_heap_get_highest_key_child_index(BinaryHeap* bHeap, int parentIndex);
-
-// Swaps two elements from the binary heap. Note that the index of the first element is 0.
-// Returns 0 in case of success and -1 otherwise.
 static int binary_heap_swap(BinaryHeap* bHeap, int index1, int index2);
 
 //
@@ -113,6 +99,7 @@ int binary_heap_get_size(BinaryHeap* bHeap)
 // Static functions implementation
 //
 
+// Reorganizes the binary heap after a new element being pushed. Returns 0 in case of success and -1 otherwise.
 static int binary_heap_reorder_after_push(BinaryHeap* bHeap)
 {
     // If the size is 0 or 1 no reorder is required
@@ -145,6 +132,7 @@ static int binary_heap_reorder_after_push(BinaryHeap* bHeap)
     return 0;
 }
 
+// Reorganizes the binary heap after a element being popped. Returns 0 in case of success and -1 otherwise.
 static int binary_heap_reorder_after_pop(BinaryHeap* bHeap)
 {
     // If the size is 0 or 1 no reorder is required
@@ -176,6 +164,7 @@ static int binary_heap_reorder_after_pop(BinaryHeap* bHeap)
     return 0;
 }
 
+// Analyzes if a given node has child nodes. Returns true if the node has at least one child and false otherwise.
 static bool binary_heap_has_childs(BinaryHeap* bHeap, int nodeIndex)
 {
     if(bHeap == NULL || bHeap->size <= 1) {
@@ -195,6 +184,8 @@ static bool binary_heap_has_childs(BinaryHeap* bHeap, int nodeIndex)
     return false;
 }
 
+// Analyzes if the childs of a given node have a higher heap key.
+// Returns true if one of the childs of the indicated parent has a higher key than the parent, and false otherwise.
 static bool binary_heap_is_parent_key_lower_than_child(BinaryHeap* bHeap, int parentIndex)
 {
     if(bHeap == NULL) {
@@ -224,6 +215,8 @@ static bool binary_heap_is_parent_key_lower_than_child(BinaryHeap* bHeap, int pa
     return false;
 }
 
+// Analyzes the childs of a parent node and it returns the index of the one with the hightest key.
+// Returns the index of the child containing the highest key value.
 static int binary_heap_get_highest_key_child_index(BinaryHeap* bHeap, int parentIndex)
 {
     if(bHeap == NULL) {
@@ -248,6 +241,8 @@ static int binary_heap_get_highest_key_child_index(BinaryHeap* bHeap, int parent
     return ((keyChild1 > keyChild2) ? child1Index: child2Index);
 }
 
+// Swaps two elements from the binary heap. Note that the index of the first element is 0.
+// Returns 0 in case of success and -1 otherwise.
 static int binary_heap_swap(BinaryHeap* bHeap, int index1, int index2)
 {
     if( bHeap == NULL || index1 < 0 || index2 < 0 ||
