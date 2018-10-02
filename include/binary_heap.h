@@ -33,7 +33,7 @@ typedef struct binaryHeap
  *
  * @return Returns a pointer to the binary heap created.
  */
-binaryHeap* create();
+binaryHeap* binary_heap_create();
 
 /**
  * @brief Deallocates the memory allocated for the heap nodes and for the binary
@@ -41,7 +41,7 @@ binaryHeap* create();
  *
  * @param bHeap Pointer to the pointer of the binary heap to be destroyed.
  */
-void destroy(binaryHeap** bHeap);
+void binary_heap_destroy(binaryHeap** bHeap);
 
 /**
  * @brief Pushes a heap node in a given binary heap, and if necessary reorganizes the
@@ -51,7 +51,7 @@ void destroy(binaryHeap** bHeap);
  * @param node Heap node to be pushed into the binary heap.
  * @return Returns 0 in case of sucess and -1 otherwise.
  */
-int push(binaryHeap** bHeap, heapNode node);
+int binary_heap_push(binaryHeap** bHeap, heapNode node);
 
 /**
  * @brief Returns the top heap node, removes it from the binary heap and reorders the heap.
@@ -60,7 +60,7 @@ int push(binaryHeap** bHeap, heapNode node);
  * @param bHeap Pointer to the pointer of the binary heap from which the node is meant to be popped.
  * @return Returns the top node from the binary heap in case of success and a node with a heap key equal to -1 otherwise
  */
-heapNode pop(binaryHeap** bHeap);
+heapNode binary_heap_pop(binaryHeap** bHeap);
 
 /**
  * @brief This method allows to access the top heap node without altering the state of
@@ -69,76 +69,14 @@ heapNode pop(binaryHeap** bHeap);
  * @param bHeap Pointer to the binary heap to be analyzed.
  * @return Returns a pointer to the top node in case of success and a NULL pointer otherwise.
  */
-heapNode* peek(binaryHeap* bHeap);
+heapNode* binary_heap_peek(binaryHeap* bHeap);
 
 /**
- * @brief Gives the size of a given binary heap.
+ * @brief Returns the size of a given binary heap.
  *
  * @param bHeap Pointer to the binary heap to be analyzed.
  * @return Returns the size of the binary or -1 if the pointer to the heap is NULL.
  */
-int size(binaryHeap* bHeap);
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////
-/// Static C functions: These functions must only be called in this file so they
-/// are declared as static to provide some encapsulation and therefore protection
-/// in the binary heaps manipulation
-///////////////////////////////////////////////////////////////////////////////////////////////
-
-/**
- * @brief Reorganizes the binary heap after a new element being pushed.
- *        This function must only be called after a push procedure.
- *
- * @param bHeap Pointer to the binary heap to be reorganized.
- * @return Returns 0 in case of sucess and -1 otherwise.
- */
-static int reorderAfterPush(binaryHeap* bHeap);
-
-/**
- * @brief Reorganizes the binary heap after a element being popped.
- *        This function must only be called after a pop procedure.
- *
- * @param bHeap Pointer to the binary heap to be reorganized.
- * @return Returns 0 in case of sucess and -1 otherwise.
- */
-static int reorderAfterPop(binaryHeap* bHeap);
-
-/**
- * @brief Analyzes if a given node has child nodes.
- *
- * @param bHeap Pointer to the heap to be analyzed.
- * @param nodeIndex Index of the node to be analyzed.
- * @return Returns true if the node has at least one child and false otherwise.
- */
-static bool hasChilds(binaryHeap* bHeap, int nodeIndex);
-
-/**
- * @brief Analyzes if the childs of a given node have a higher heap key.
- *
- * @param bHeap Pointer to the heap to be analyzed.
- * @param parentIndex Index of the parent to be analyzed.
- * @return Returns true if one of the childs of the indicated parent has a higher key than the parent, and false otherwise.
- */
-static bool isParentKeyLowerThanChild(binaryHeap* bHeap, int parentIndex);
-
-/**
- * @brief Analyzes the childs of a parent node and it returns the index of the one with the hightest key.
- *
- * @param bHeap Pointer to the heap to be analyzed.
- * @param parentIndex Index of the parent to be analyzed.
- * @return Returns the index of the child containing the highest key value.
- */
-static int getIndexOfHighestKeyChild(binaryHeap* bHeap, int parentIndex);
-
-/**
- * @brief Swaps two elements from the binary heap. Note that the index of the first element is 0.
- *
- * @param bHeap Pointer to the binary heap in which the heap nodes are meant to be swapped.
- * @param index1 Index of the first heap node.
- * @param index2 Index of the second heap node.
- * @return Returns 0 in case of sucess and -1 otherwise.
- */
-static int swap(binaryHeap* bHeap, int index1, int index2);
+int binary_heap_get_size(binaryHeap* bHeap);
 
 #endif

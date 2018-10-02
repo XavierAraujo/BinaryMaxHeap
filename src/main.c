@@ -1,52 +1,52 @@
 #include "main.h"
 
-int main(int argc, char** argv[])
+int main()
 {
     heapNode node, poppedNode;
 
-    binaryHeap* myHeap = create();
+    binaryHeap* myHeap = binary_heap_create();
 
     node.key = 11; strcpy(node.name, "Node A");
-    push(&myHeap, node);
+    binary_heap_push(&myHeap, node);
     node.key = 5; strcpy(node.name, "Node B");
-    push(&myHeap, node);
+    binary_heap_push(&myHeap, node);
     node.key = 8; strcpy(node.name, "Node C");
-    push(&myHeap, node);
+    binary_heap_push(&myHeap, node);
     node.key = 3; strcpy(node.name, "Node D");
-    push(&myHeap, node);
+    binary_heap_push(&myHeap, node);
     node.key = 4; strcpy(node.name, "Node E");
-    push(&myHeap, node);
+    binary_heap_push(&myHeap, node);
     printHeap(myHeap);
 
     node.key = 15; strcpy(node.name, "Node F");
-    push(&myHeap, node);
+    binary_heap_push(&myHeap, node);
     printHeap(myHeap);
 
-    poppedNode = pop(&myHeap);
+    poppedNode = binary_heap_pop(&myHeap);
     printPoppedNode(&poppedNode);
     printHeap(myHeap);
 
-    poppedNode = pop(&myHeap);
+    poppedNode = binary_heap_pop(&myHeap);
     printPoppedNode(&poppedNode);
     printHeap(myHeap);
 
-    poppedNode = pop(&myHeap);
+    poppedNode = binary_heap_pop(&myHeap);
     printPoppedNode(&poppedNode);
     printHeap(myHeap);
 
-    poppedNode = pop(&myHeap);
+    poppedNode = binary_heap_pop(&myHeap);
     printPoppedNode(&poppedNode);
     printHeap(myHeap);
 
-    poppedNode = pop(&myHeap);
+    poppedNode = binary_heap_pop(&myHeap);
     printPoppedNode(&poppedNode);
     printHeap(myHeap);
 
-    poppedNode = pop(&myHeap);
+    poppedNode = binary_heap_pop(&myHeap);
     printPoppedNode(&poppedNode);
     printHeap(myHeap);
 
-    destroy(&myHeap);
+    binary_heap_destroy(&myHeap);
     printHeap(myHeap);
 
     return 0;
