@@ -1,7 +1,7 @@
 project(BinaryHeap)
 cmake_minimum_required(VERSION 2.8)
 
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/build)
 
 # Define the directory of the source code and headers
 set(SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src")
