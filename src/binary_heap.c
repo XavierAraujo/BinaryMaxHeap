@@ -30,8 +30,14 @@ BinaryHeap* binary_heap_create(BinaryHeapCollector collector)
 
 void binary_heap_destroy(BinaryHeap** bHeap)
 {
-    for (int i=0; i < (*bHeap)->size; i++) {
-        (*bHeap)->collect((*bHeap)->nodes[i].item);
+    if((*bHeap) == NULL) {
+        return;
+    }
+
+    if ((*bHeap)->collect != NULL) {
+        for (int i=0; i < (*bHeap)->size; i++) {
+            (*bHeap)->collect((*bHeap)->nodes[i].item);
+        }
     }
 
     free((*bHeap)->nodes);
