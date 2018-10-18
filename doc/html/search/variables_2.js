@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['size',['size',['../structbinaryHeap.html#ab57ad79830ff9ac578c06a3859c46522',1,'binaryHeap']]]
+  ['key',['key',['../structHeapNode.html#a7d9dede8023d71ba9b5fc7c39c7d606a',1,'HeapNode']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['heapnode',['heapNode',['../binary__heap_8h.html#adbd45cece00de71b9d7f1f9aea98ebd0',1,'binary_heap.h']]]
+  ['heapnode',['HeapNode',['../binary__heap_8h.html#a501625605d06c161270f9996b72fd706',1,'binary_heap.h']]]
 ];
