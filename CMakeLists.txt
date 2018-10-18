@@ -14,7 +14,7 @@ include_directories( ${INC_DIR})
 
 if(CMAKE_BUILD_TYPE MATCHES Debug) # Compile for testing
 
-    set(TEST_SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/test/src")
+    set(TEST_SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/tests/src")
     file(GLOB_RECURSE C_TEST_SOURCES "${TEST_SRC_DIR}/*.c")
 
     # Setup CUnit framework
