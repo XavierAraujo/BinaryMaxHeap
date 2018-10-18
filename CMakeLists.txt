@@ -39,6 +39,3 @@ endif()
 
 add_library(${PROJECT_NAME} ${C_SOURCES}
                             ${C_INCLUDES})
-
-
-target_link_libraries(${PROJECT_NAME})
