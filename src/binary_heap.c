@@ -19,16 +19,21 @@ static int binary_heap_swap(BinaryHeap* bHeap, int index1, int index2);
 // Header functions implementation
 //
 
-BinaryHeap* binary_heap_create()
+BinaryHeap* binary_heap_create(BinaryHeapCollector collector)
 {
     BinaryHeap *heap = (BinaryHeap*) malloc(sizeof(BinaryHeap));
     heap->nodes = NULL;
+    heap->collect = collector;
     heap->size = 0;
     return heap;
 }
 
 void binary_heap_destroy(BinaryHeap** bHeap)
 {
+    for (int i=0; i < (*bHeap)->size; i++) {
+        (*bHeap)->collect((*bHeap)->nodes[i].item);
+    }
+
     free((*bHeap)->nodes);
     free((*bHeap));
     (*bHeap) = NULL;

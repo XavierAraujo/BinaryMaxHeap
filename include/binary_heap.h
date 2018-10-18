@@ -2,15 +2,20 @@
 #define BINARY_HEAP_H
 
 /**
- * @brief This struct represents a binary heap node which is composed by a heap key and
- *        by a name that identifies it.
+ * @brief This struct represents a binary heap node which is composed by a key and
+ *        an abstract item.
  */
 typedef struct HeapNode
 {
-    int key; /**< Heap key of the node. */
-    char name[50]; /**< Name of the node. */
-
+    int key; /**< Key of the node. */
+    void *item; /**< Pointer to the object being kept by the node. */
 } HeapNode;
+
+/**
+ * @brief This is the signature of the function that should be used to deallocate an item from
+ *        a HeapNode.
+ */
+typedef void (*BinaryHeapCollector)(void * item);
 
 /**
  * @brief This struct represents a binary heap which is composed by a size value, which
@@ -20,6 +25,7 @@ typedef struct HeapNode
 typedef struct BinaryHeap
 {
     HeapNode* nodes; /**< Pointer to the nodes of the heap. */
+    BinaryHeapCollector collect; /**< Pointer to the item deallocation function. */
     size_t size; /**< Size of the heap. */
 
 } BinaryHeap;
@@ -28,9 +34,11 @@ typedef struct BinaryHeap
  * @brief Creates and initializes a binary heap. The size of the binary heap is
  *        set to 0 and the pointer to its nodes is set to NULL.
  *
+ * @param collector Pointer to the function to be used when deallocating items from the binary heap.
+ *
  * @return Returns a pointer to the binary heap created.
  */
-BinaryHeap* binary_heap_create();
+BinaryHeap* binary_heap_create(BinaryHeapCollector collector);
 
 /**
  * @brief Deallocates the memory allocated for the heap nodes and for the binary
