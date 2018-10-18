@@ -1,10 +1,17 @@
-#include "main.h"
+#include <stdio.h>
+#include <string.h>
+
+#include "binary_heap.h"
+
+static void printHeap(BinaryHeap* bHeap);
+static void printPoppedNode(HeapNode* node);
+
 
 int main()
 {
     HeapNode node, poppedNode;
 
-    BinaryHeap* myHeap = binary_heap_create();
+    BinaryHeap* myHeap = binary_heap_create(NULL);
 
     node.key = 11; strcpy(node.name, "Node A");
     binary_heap_push(&myHeap, node);
@@ -52,7 +59,7 @@ int main()
     return 0;
 }
 
-void printPoppedNode(HeapNode* node)
+static void printPoppedNode(HeapNode* node)
 {
     if (node == NULL)
     {
@@ -63,7 +70,7 @@ void printPoppedNode(HeapNode* node)
     printf("\npoppedNode -> key:%i, name:%s\n", node->key, node->name);
 }
 
-void printHeap(BinaryHeap* bHeap)
+static void printHeap(BinaryHeap* bHeap)
 {
     if (bHeap == NULL)
     {
