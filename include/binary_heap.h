@@ -76,12 +76,4 @@ HeapNode binary_heap_pop(BinaryHeap** bHeap);
  */
 HeapNode* binary_heap_peek(BinaryHeap* bHeap);
 
-/**
- * @brief Returns the size of a given binary heap.
- *
- * @param bHeap Pointer to the binary heap to be analyzed.
- * @return Returns the size of the binary or -1 if the pointer to the heap is NULL.
- */
-int binary_heap_get_size(BinaryHeap* bHeap);
-
 #endif

@@ -97,15 +97,6 @@ HeapNode* binary_heap_peek(BinaryHeap* bHeap)
     return &bHeap->nodes[0];
 }
 
-int binary_heap_get_size(BinaryHeap* bHeap)
-{
-    if (bHeap == NULL) {
-        return -1;
-    }
-
-    return bHeap->size;
-}
-
 //
 // Static functions implementation
 //

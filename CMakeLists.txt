@@ -37,8 +37,8 @@ if(CMAKE_BUILD_TYPE MATCHES Debug) # Compile for testing
 endif()
 
 
-add_executable(${PROJECT_NAME} ${C_SOURCES}
-                               ${C_INCLUDES})
+add_library(${PROJECT_NAME} ${C_SOURCES}
+                            ${C_INCLUDES})
 
 
 target_link_libraries(${PROJECT_NAME})
