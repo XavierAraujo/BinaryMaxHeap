@@ -35,6 +35,8 @@ typedef struct BinaryHeap
  *        set to 0 and the pointer to its nodes is set to NULL.
  *
  * @param collector Pointer to the function to be used when deallocating items from the binary heap.
+ *                  If the items stored on the binary heap were not allocated on the Heap memory
+ *                  they should not be deallocated. If this is the case the collector can be set to NULL.
  *
  * @return Returns a pointer to the binary heap created.
  */
@@ -42,7 +44,9 @@ BinaryHeap* binary_heap_create(BinaryHeapCollector collector);
 
 /**
  * @brief Deallocates the memory allocated for the heap nodes and for the binary
- *        heap to prevent memory leaks. It also sets the pointer to the heap to NULL.
+ *        heap to prevent memory leaks. It uses the collector function, given when
+ *        the binary heap was created, to deallocate the node's items. It also sets
+ *        the pointer to the heap to NULL.
  *
  * @param bHeap Pointer to the pointer of the binary heap to be destroyed.
  */
