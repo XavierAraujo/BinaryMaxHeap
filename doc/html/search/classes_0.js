@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['binaryheap',['binaryHeap',['../structbinaryHeap.html',1,'']]]
+  ['binaryheap',['BinaryHeap',['../structBinaryHeap.html',1,'']]]
 ];

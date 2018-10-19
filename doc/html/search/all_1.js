@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['create',['create',['../binary__heap_8h.html#af3bb3f610c66737c86187ea4a7029616',1,'create():&#160;binary_heap.c'],['../binary__heap_8c.html#af3bb3f610c66737c86187ea4a7029616',1,'create():&#160;binary_heap.c']]]
+  ['collect',['collect',['../structBinaryHeap.html#aa54400b969a2a54563d1f6d527c52533',1,'BinaryHeap']]]
 ];
