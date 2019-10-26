@@ -25,7 +25,6 @@ if(CMAKE_BUILD_TYPE MATCHES Debug) # Compile for testing
 
     message(STATUS "Found CUnit library at ${C_UNIT}")
 
-
     # test binary that executes the unit tests
     set(BINARY_HEAP_TEST_EXECUTABLE "TestBinaryHeap")
     add_executable( ${BINARY_HEAP_TEST_EXECUTABLE}
@@ -33,6 +32,7 @@ if(CMAKE_BUILD_TYPE MATCHES Debug) # Compile for testing
         ${C_TEST_SOURCES}
         ${C_INCLUDES}
         ${CUNIT_INCLUDE_DIRS} )
+    target_link_libraries(${BINARY_HEAP_TEST_EXECUTABLE} ${C_UNIT})
 
 endif()
 
